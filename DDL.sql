@@ -94,12 +94,12 @@ CREATE TABLE Vuelo (
     Duracion TIME,
     Fecha_salida DATE,
     Hora_salida TIME,
-    Ciudad_salida VARCHAR(100),
-    Pais_salida VARCHAR(100),
+    Ciudad_salida VARCHAR(50),
+    Pais_salida VARCHAR(50),
     Fecha_llegada DATE,
     Hora_llegada TIME,
-    Ciudad_llegada VARCHAR(100),
-    Pais_llegada VARCHAR(100),
+    Ciudad_llegada VARCHAR(50),
+    Pais_llegada VARCHAR(50),
     Matricula_avion VARCHAR(20)
 );
 
