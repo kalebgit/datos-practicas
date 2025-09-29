@@ -94,8 +94,12 @@ CREATE TABLE Vuelo (
     Duracion TIME,
     Fecha_salida DATE,
     Hora_salida TIME,
+    Ciudad_salida VARCHAR(100),
+    Pais_salida VARCHAR(100),
     Fecha_llegada DATE,
     Hora_llegada TIME,
+    Ciudad_llegada VARCHAR(100),
+    Pais_llegada VARCHAR(100),
     Matricula_avion VARCHAR(20)
 );
 
@@ -308,6 +312,10 @@ COMMENT ON COLUMN Vuelo.Numero_vuelo IS 'Código único que identifica el vuelo.
 COMMENT ON COLUMN Vuelo.Tipo_vuelo IS 'Clasificación del vuelo (doméstico, internacional).';
 COMMENT ON COLUMN Vuelo.Estado IS 'Estado actual del vuelo (programado, en vuelo, cancelado, completado).';
 COMMENT ON COLUMN Vuelo.Duracion IS 'Tiempo estimado de duración del vuelo.';
+COMMENT ON COLUMN Vuelo.Ciudad_salida IS 'Ciudad de origen del vuelo.';
+COMMENT ON COLUMN Vuelo.Pais_salida IS 'País de origen del vuelo.';
+COMMENT ON COLUMN Vuelo.Ciudad_llegada IS 'Ciudad de destino del vuelo.';
+COMMENT ON COLUMN Vuelo.Pais_llegada IS 'País de destino del vuelo.';
 COMMENT ON COLUMN Boleto.Boleto_id IS 'Identificador único del boleto.';
 COMMENT ON COLUMN Boleto.Numero_asiento IS 'Número del asiento asignado.';
 COMMENT ON COLUMN Boleto.Clase IS 'Clase de servicio (económica, ejecutiva, primera).';
