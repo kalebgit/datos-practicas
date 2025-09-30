@@ -470,6 +470,153 @@ UPDATE Boleto SET clase = 'primera', numero_asiento = '02A' WHERE Boleto_id = 1;
 UPDATE Boleto SET clase = 'ejecutiva', numero_asiento = '12C' WHERE Boleto_id = 2;
 UPDATE Boleto SET clase = 'economica', numero_asiento = '35F' WHERE Boleto_id = 3;
 
+
+
+
+
+
+
+-- ========================================
+-- SECCIÓN: COMPLETAMOS DATOS FALTANTES
+-- Autor: Emiliano Jimenez
+-- Fecha: 2025-09-29
+-- ========================================
+
+-- ========================================
+-- UPDATE: Completamos lo que falta
+-- Descripción: Agregamos tipo de vuelo, aeropuertos origen/destino,
+--              duración, estado y datos de llegada
+-- ========================================
+
+UPDATE vuelo SET
+    tipo_vuelo_id = 1,
+    aeropuerto_salida_id = 1,
+    aeropuerto_llegada_id = 2,
+    duracion = '02:30:00',
+    estado = 'programado',
+    fecha_llegada = '2025-10-01',
+    hora_llegada = '23:22:00',
+    ciudad_salida = 'Ciudad de México',
+    pais_salida = 'México',
+    fecha_salida = '2025-10-01',
+    hora_salida = '10:30:00'
+WHERE numero_vuelo = 'AM2501';
+
+UPDATE vuelo SET
+    tipo_vuelo_id = 1,
+    aeropuerto_salida_id = 2,
+    aeropuerto_llegada_id = 3,
+    duracion = '03:15:00',
+    estado = 'programado',
+    fecha_llegada = '2025-10-02',
+    hora_llegada = '12:45:00',
+    ciudad_salida = 'Cancún',
+    pais_salida = 'México',
+    fecha_salida = '2025-10-01',
+    hora_salida= '12:45:00'
+WHERE numero_vuelo = 'VO4502';
+
+UPDATE vuelo SET
+    tipo_vuelo_id = 1,
+    aeropuerto_salida_id = 3,
+    aeropuerto_llegada_id = 4,
+    duracion = '01:30:00',
+    estado = 'programado',
+    fecha_llegada = '2025-10-02', -- no se me ocurrio mas q darles 24 horas una disculpita
+    hora_llegada = '11:45:00',
+    ciudad_salida = 'Guadalajara',
+    pais_salida = 'México',
+    fecha_salida = '2025-10-01',
+    hora_salida= '11:45:00'
+WHERE numero_vuelo = 'VB3503';
+
+UPDATE vuelo SET
+    tipo_vuelo_id = 1,
+    aeropuerto_salida_id = 4,
+    aeropuerto_llegada_id = 5,
+    duracion = '02:00:00',
+    estado = 'programado',
+    fecha_llegada = '2025-10-03',
+    hora_llegada = '14:00:00',
+    ciudad_salida = 'Monterrey',
+    pais_salida = 'México',
+    fecha_salida = '2025-10-02',
+    hora_salida = '14:00:00'
+WHERE numero_vuelo = 'AM2504';
+
+UPDATE vuelo SET
+    tipo_vuelo_id = 1,
+    aeropuerto_salida_id = 5,
+    aeropuerto_llegada_id = 1,
+    duracion = '03:00:00',
+    estado = 'programado',
+    fecha_llegada = '2025-10-17',
+    hora_llegada = '17:30:00',
+    ciudad_salida = 'Tijuana',
+    pais_salida = 'México',
+    fecha_salida= '2025-10-02',
+    hora_salida = '17:30:00'
+WHERE numero_vuelo = 'VO4505';
+
+-- ========================================
+-- UPDATE: Completar información
+-- Descripción: Agregar ubicación completa de aeropuertos
+-- ========================================
+
+UPDATE aeropuerto SET
+    pais = 'México',
+    ciudad = 'Ciudad de México',
+    municipio = 'Venustiano Carranza',
+    codigo_postal = '15620',
+    calle = 'Av. Capitán Carlos León',
+    colonia = 'Peñón de los Baños',
+    numero_exterior = 'S/N'
+WHERE aeropuerto_id = 1;
+
+UPDATE aeropuerto SET
+    pais = 'México',
+    ciudad = 'Cancún',
+    municipio = 'Benito Juárez',
+    codigo_postal = '77565',
+    calle = 'Carretera Cancún-Chetumal',
+    colonia = 'Cancún',
+    numero_exterior = 'Km 22'
+WHERE aeropuerto_id = 2;
+
+UPDATE aeropuerto SET
+    pais = 'México',
+    ciudad = 'Guadalajara',
+    municipio = 'Tlajomulco de Zúñiga',
+    codigo_postal = '45659',
+    calle = 'Carretera Guadalajara-Chapala',
+    colonia = 'Santa Cruz del Valle',
+    numero_exterior = 'Km 17.5'
+WHERE aeropuerto_id = 3;
+
+UPDATE aeropuerto SET
+    pais = 'México',
+    ciudad = 'Monterrey',
+    municipio = 'Apodaca',
+    codigo_postal = '66600',
+    calle = 'Carretera Miguel Alemán',
+    colonia = 'Del Norte',
+    numero_exterior = 'Km 24'
+WHERE aeropuerto_id = 4;
+
+UPDATE aeropuerto SET
+    pais = 'México',
+    ciudad = 'Tijuana',
+    municipio = 'Tijuana',
+    codigo_postal = '22425',
+    calle = 'Aeropuerto Internacional',
+    colonia = 'La Mesa',
+    numero_exterior = 'S/N'
+WHERE aeropuerto_id = 5;
+
+
+
+
+
 -- ========================================
 -- SECCIÓN: ELIMINACIÓN DE DATOS
 -- Autor: Emiliano Jiménez
@@ -496,8 +643,8 @@ SELECT * FROM Mecanico;
 -- Consulta 2: Listar razones sociales de aerolíneas
 SELECT razon_social FROM aerolineas;
 
--- Consulta 3: Certificaciones de pilotos experimentados
-SELECT * FROM Certificacion_tipo_aeronave WHERE piloto_id > 35;
+-- Consulta 3: Certificaciones de pilotos con ids mayores a 20
+SELECT * FROM Certificacion_tipo_aeronave WHERE piloto_id > 20;
 
 -- Consulta 4: Sobrecargos que hablan alemán
 SELECT * FROM Idioma WHERE nombre ='Alemán';
@@ -507,6 +654,7 @@ SELECT * FROM Certificacion_seguridad
 WHERE nombre ='Prevención de Incendios Clase D' AND sobrecargo_id > 30;
 
 -- Consulta 6: Boletos con precio mayor a 300 o vuelos Aeromexico
+-- Notamos que algunos son NULL pues nuestros DMLS no llegarona llenar todos los registros ya que son bastantes
 SELECT * FROM Boleto WHERE numero_vuelo LIKE 'A%' OR precio > 300;
 
 -- Consulta 7: Correos de clientes con ID mayor a 22

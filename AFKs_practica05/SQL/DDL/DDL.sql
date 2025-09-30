@@ -1,5 +1,5 @@
 -- ========================================
--- SISTEMA DE AEROLÍNEAS - DDL 
+-- SISTEMA DE AEROLÍNEAS - DDL
 -- Base de datos: aeropuerto2026
 -- Usuario: leninmerino
 -- ========================================
