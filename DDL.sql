@@ -86,10 +86,17 @@ CREATE TABLE Avion (
     Aerolinea_id INT
 );
 
+-- Tabla Tipos de Vuelo
+CREATE TABLE Tipo_vuelo (
+    Tipo_vuelo_id INT,
+    Nombre VARCHAR(50),
+    Descripcion TEXT
+);
+
 -- Tabla Vuelos
 CREATE TABLE Vuelo (
     Numero_vuelo VARCHAR(10),
-    Tipo_vuelo VARCHAR(20),
+    Tipo_vuelo_id INT,
     Estado VARCHAR(20),
     Duracion TIME,
     Fecha_salida DATE,
@@ -206,6 +213,7 @@ ALTER TABLE Aerolineas ADD CONSTRAINT PK_Aerolineas PRIMARY KEY (Aerolinea_id);
 ALTER TABLE Empleado ADD CONSTRAINT PK_Empleado PRIMARY KEY (Empleado_id);
 ALTER TABLE Aeropuerto ADD CONSTRAINT PK_Aeropuerto PRIMARY KEY (Aeropuerto_id);
 ALTER TABLE Avion ADD CONSTRAINT PK_Avion PRIMARY KEY (Matricula_avion);
+ALTER TABLE Tipo_vuelo ADD CONSTRAINT PK_Tipo_vuelo PRIMARY KEY (Tipo_vuelo_id);
 ALTER TABLE Vuelo ADD CONSTRAINT PK_Vuelo PRIMARY KEY (Numero_vuelo);
 ALTER TABLE Boleto ADD CONSTRAINT PK_Boleto PRIMARY KEY (Boleto_id);
 ALTER TABLE Cliente ADD CONSTRAINT PK_Cliente PRIMARY KEY (Cliente_id);
@@ -235,6 +243,7 @@ ALTER TABLE Telefono ADD CONSTRAINT FK_Telefono_Empleado FOREIGN KEY (Empleado_i
 ALTER TABLE Contratar ADD CONSTRAINT FK_Contratar_Aerolinea FOREIGN KEY (Aerolinea_id) REFERENCES Aerolineas(Aerolinea_id);
 ALTER TABLE Contratar ADD CONSTRAINT FK_Contratar_Empleado FOREIGN KEY (Empleado_id) REFERENCES Empleado(Empleado_id);
 ALTER TABLE Avion ADD CONSTRAINT FK_Avion_Aerolinea FOREIGN KEY (Aerolinea_id) REFERENCES Aerolineas(Aerolinea_id);
+ALTER TABLE Vuelo ADD CONSTRAINT FK_Vuelo_Tipo FOREIGN KEY (Tipo_vuelo_id) REFERENCES Tipo_vuelo(Tipo_vuelo_id);
 ALTER TABLE Vuelo ADD CONSTRAINT FK_Vuelo_Avion FOREIGN KEY (Matricula_avion) REFERENCES Avion(Matricula_avion);
 ALTER TABLE Boleto ADD CONSTRAINT FK_Boleto_Vuelo FOREIGN KEY (Numero_vuelo) REFERENCES Vuelo(Numero_vuelo);
 ALTER TABLE Piloto_vuelo ADD CONSTRAINT FK_PilotoVuelo_Empleado FOREIGN KEY (Empleado_id) REFERENCES Empleado(Empleado_id);
@@ -262,6 +271,8 @@ ALTER TABLE Aeropuerto ALTER COLUMN Aeropuerto_id SET NOT NULL;
 ALTER TABLE Aeropuerto ALTER COLUMN Nombre SET NOT NULL;
 ALTER TABLE Avion ALTER COLUMN Matricula_avion SET NOT NULL;
 ALTER TABLE Avion ALTER COLUMN Capacidad_pasajeros SET NOT NULL;
+ALTER TABLE Tipo_vuelo ALTER COLUMN Tipo_vuelo_id SET NOT NULL;
+ALTER TABLE Tipo_vuelo ALTER COLUMN Nombre SET NOT NULL;
 ALTER TABLE Vuelo ALTER COLUMN Numero_vuelo SET NOT NULL;
 ALTER TABLE Vuelo ALTER COLUMN Fecha_salida SET NOT NULL;
 ALTER TABLE Vuelo ALTER COLUMN Hora_salida SET NOT NULL;
@@ -280,6 +291,7 @@ COMMENT ON TABLE Aerolineas IS 'Tabla que almacena información de las aerolíne
 COMMENT ON TABLE Empleado IS 'Tabla que contiene datos personales y de ubicación de todos los empleados.';
 COMMENT ON TABLE Aeropuerto IS 'Tabla que registra información de aeropuertos donde operan las aerolíneas.';
 COMMENT ON TABLE Avion IS 'Tabla que almacena datos de la flota de aviones de cada aerolínea.';
+COMMENT ON TABLE Tipo_vuelo IS 'Tabla catálogo que define los tipos de vuelo disponibles en el sistema.';
 COMMENT ON TABLE Vuelo IS 'Tabla que contiene información de vuelos programados y su estado.';
 COMMENT ON TABLE Boleto IS 'Tabla que registra los boletos disponibles para cada vuelo.';
 COMMENT ON TABLE Cliente IS 'Tabla que almacena información personal de los clientes.';
@@ -308,8 +320,11 @@ COMMENT ON COLUMN Empleado.Empleado_id IS 'Identificador único del empleado.';
 COMMENT ON COLUMN Empleado.Nombres IS 'Nombre(s) del empleado.';
 COMMENT ON COLUMN Empleado.Apellido_paterno IS 'Apellido paterno del empleado.';
 COMMENT ON COLUMN Empleado.Apellido_materno IS 'Apellido materno del empleado.';
+COMMENT ON COLUMN Tipo_vuelo.Tipo_vuelo_id IS 'Identificador único del tipo de vuelo.';
+COMMENT ON COLUMN Tipo_vuelo.Nombre IS 'Nombre del tipo de vuelo (ej. Pasajeros, Carga, Mixto).';
+COMMENT ON COLUMN Tipo_vuelo.Descripcion IS 'Descripción detallada del tipo de vuelo.';
 COMMENT ON COLUMN Vuelo.Numero_vuelo IS 'Código único que identifica el vuelo.';
-COMMENT ON COLUMN Vuelo.Tipo_vuelo IS 'Clasificación del vuelo (doméstico, internacional).';
+COMMENT ON COLUMN Vuelo.Tipo_vuelo_id IS 'Referencia al tipo de vuelo del catálogo.';
 COMMENT ON COLUMN Vuelo.Estado IS 'Estado actual del vuelo (programado, en vuelo, cancelado, completado).';
 COMMENT ON COLUMN Vuelo.Duracion IS 'Tiempo estimado de duración del vuelo.';
 COMMENT ON COLUMN Vuelo.Ciudad_salida IS 'Ciudad de origen del vuelo.';
