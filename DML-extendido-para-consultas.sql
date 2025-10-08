@@ -436,7 +436,6 @@ INSERT INTO Cliente (Cliente_id, Nombres, Apellido_paterno, Apellido_materno, Fe
 (57, 'Melissa', 'Corona', 'Galván', '1993-03-24'), (58, 'Antonio', 'Valencia', 'Escobar', '1988-07-17'),
 (59, 'Cecilia', 'Figueroa', 'Olvera', '1992-11-10'), (60, 'Felipe', 'Cabrera', 'Solís', '1987-02-03'),
 (61, 'Regina', 'Galván', 'Montes', '1991-06-26'), (62, 'Enrique', 'Escobar', 'Zárate', '1986-03-9'),
-(61, 'Regina', 'Galván', 'Montes', '1991-06-26'), (62, 'Enrique', 'Escobar', 'Zárate', '1986-10-19'),
 (63, 'Karla', 'Olvera', 'Portillo', '1995-01-12'), (64, 'Ramón', 'Solís', 'Meza', '1990-05-05'),
 (65, 'Angélica', 'Montes', 'Rivas', '1993-09-28'), (66, 'Martín', 'Zárate', 'Cervantes', '1988-01-21'),
 (67, 'Norma', 'Portillo', 'Salazar', '1992-05-14'), (68, 'Rubén', 'Meza', 'Téllez', '1987-09-07'),
